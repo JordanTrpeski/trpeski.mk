@@ -1,0 +1,741 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jordan Trpeski — Automation & AI Engineer</title>
+  <meta name="description" content="Jordan Trpeski — I build automation systems, AI pipelines, and internal tooling that ships to production." />
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #07080F;
+      --bg2: #0D0F1A;
+      --panel: rgba(255,255,255,.05);
+      --panel-strong: rgba(255,255,255,.08);
+      --text: #EEF0F8;
+      --muted: #6B7590;
+      --muted2: #9BA5BE;
+      --border: rgba(255,255,255,.09);
+      --border-strong: rgba(255,255,255,.15);
+      --accent: #00C9A7;
+      --accent2: #00A88C;
+      --accent-glow: rgba(0,201,167,.18);
+      --accent-subtle: rgba(0,201,167,.08);
+      --amber: #F5A623;
+      --shadow: 0 32px 80px rgba(0,0,0,.5);
+      --shadow-sm: 0 8px 32px rgba(0,0,0,.3);
+      --font: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+      --mono: 'JetBrains Mono', ui-monospace, monospace;
+      --radius: 20px;
+      --radius-sm: 12px;
+    }
+
+    * { box-sizing: border-box; margin: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ── GRID BACKGROUND ── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(0,201,167,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0,201,167,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 10% 20%, rgba(0,201,167,.12) 0%, transparent 50%),
+        radial-gradient(ellipse at 90% 70%, rgba(88,70,220,.1) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ── LAYOUT ── */
+    .wrap { width: min(1140px, calc(100% - 48px)); margin-inline: auto; position: relative; z-index: 1; }
+
+    a { color: inherit; text-decoration: none; }
+    a:hover { color: var(--accent); }
+
+    /* ── HEADER ── */
+    .site-header {
+      position: sticky; top: 0; z-index: 100;
+      backdrop-filter: blur(24px) saturate(180%);
+      border-bottom: 1px solid var(--border);
+      background: rgba(7,8,15,.7);
+    }
+    .header-inner {
+      width: min(1140px, calc(100% - 48px));
+      margin-inline: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+      gap: 1rem;
+    }
+    .brand {
+      font-family: var(--mono);
+      font-size: .85rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: .05em;
+    }
+    .brand span { color: var(--muted2); font-weight: 400; }
+    .site-nav { display: flex; align-items: center; gap: .25rem; }
+    .site-nav a {
+      padding: .5rem .9rem;
+      border-radius: 999px;
+      font-size: .88rem;
+      font-weight: 500;
+      color: var(--muted2);
+      transition: color .2s, background .2s;
+    }
+    .site-nav a:hover { color: var(--text); background: var(--panel-strong); }
+    .nav-cta {
+      padding: .5rem 1.1rem !important;
+      background: var(--accent-subtle) !important;
+      border: 1px solid rgba(0,201,167,.3) !important;
+      color: var(--accent) !important;
+      border-radius: 999px;
+      font-size: .88rem;
+      font-weight: 600;
+    }
+    .nav-cta:hover { background: var(--accent-glow) !important; }
+    .nav-toggle { display: none; background: var(--panel); border: 1px solid var(--border); border-radius: 999px; padding: .5rem .9rem; color: var(--text); font: inherit; cursor: pointer; font-size: .88rem; }
+
+    /* ── HERO ── */
+    .hero {
+      padding: 7rem 0 6rem;
+      display: grid;
+      grid-template-columns: 1fr 380px;
+      gap: 3rem;
+      align-items: center;
+      min-height: 88vh;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      background: var(--accent-subtle);
+      border: 1px solid rgba(0,201,167,.25);
+      border-radius: 999px;
+      padding: .35rem 1rem;
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--accent);
+      margin-bottom: 1.5rem;
+    }
+    .hero-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--accent);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent);
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { opacity: 1; }
+      50% { opacity: .4; }
+    }
+
+    h1 {
+      font-size: clamp(3.2rem, 7vw, 6rem);
+      font-weight: 900;
+      line-height: .95;
+      letter-spacing: -.05em;
+      margin-bottom: 1.5rem;
+    }
+    h1 em {
+      font-style: normal;
+      color: transparent;
+      background: linear-gradient(135deg, var(--accent), #5BE8D0);
+      -webkit-background-clip: text;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: clamp(1.05rem, 2vw, 1.25rem);
+      color: var(--muted2);
+      max-width: 560px;
+      margin-bottom: 2.5rem;
+      line-height: 1.7;
+    }
+
+    .actions { display: flex; flex-wrap: wrap; gap: .75rem; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      padding: .75rem 1.5rem;
+      border-radius: 999px;
+      font: 600 .92rem var(--font);
+      cursor: pointer;
+      transition: all .2s;
+      border: 1px solid transparent;
+    }
+    .btn-primary {
+      background: var(--accent);
+      color: #07080F;
+      border-color: var(--accent);
+    }
+    .btn-primary:hover { background: #00E0BA; color: #07080F; }
+    .btn-ghost {
+      background: var(--panel);
+      color: var(--muted2);
+      border-color: var(--border);
+    }
+    .btn-ghost:hover { border-color: var(--border-strong); color: var(--text); }
+
+    /* ── HERO CARD ── */
+    .hero-card {
+      background: linear-gradient(160deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 1.75rem;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+      pointer-events: none;
+    }
+    .hero-card-label {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--accent);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .hero-card p { color: var(--muted2); font-size: .95rem; line-height: 1.7; margin-bottom: 1.5rem; }
+    .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .stat {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: .85rem;
+    }
+    .stat-val {
+      font-size: 1.6rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1;
+      margin-bottom: .25rem;
+    }
+    .stat-val span { color: var(--accent); }
+    .stat-label { font-size: .75rem; color: var(--muted); }
+
+    /* ── SECTIONS ── */
+    .section { padding: 5rem 0; }
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 2rem;
+      margin-bottom: 2.5rem;
+    }
+    .eyebrow {
+      font-family: var(--mono);
+      font-size: .72rem;
+      color: var(--accent);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: .5rem;
+    }
+    h2 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      line-height: 1;
+      margin-bottom: .75rem;
+    }
+    .section-desc { color: var(--muted2); max-width: 600px; }
+    .inline-link {
+      font-size: .9rem;
+      color: var(--accent);
+      white-space: nowrap;
+      border-bottom: 1px solid rgba(0,201,167,.3);
+      padding-bottom: 1px;
+      transition: border-color .2s;
+    }
+    .inline-link:hover { border-color: var(--accent); color: var(--accent); }
+
+    /* ── PROJECT GRID ── */
+    .project-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+
+    .project-card {
+      background: linear-gradient(160deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
+      transition: border-color .2s, transform .2s;
+    }
+    .project-card:hover { border-color: rgba(0,201,167,.3); transform: translateY(-3px); }
+
+    .project-meta { display: flex; flex-wrap: wrap; gap: .4rem; }
+    .tag {
+      display: inline-flex;
+      padding: .2rem .65rem;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+      color: var(--muted2);
+      font-size: .78rem;
+      font-family: var(--mono);
+    }
+    .tag-accent { border-color: rgba(0,201,167,.3); background: var(--accent-subtle); color: var(--accent); }
+
+    .project-card h3 { font-size: 1.1rem; font-weight: 700; letter-spacing: -.02em; }
+    .project-card strong { font-size: .9rem; color: var(--muted2); font-weight: 500; }
+    .project-card p { color: var(--muted); font-size: .9rem; flex-grow: 1; }
+    .project-card ul { padding-left: 1rem; color: var(--muted); font-size: .88rem; display: flex; flex-direction: column; gap: .25rem; }
+
+    .card-footer {
+      margin-top: auto;
+      padding-top: .75rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* ── TIMELINE ── */
+    .timeline { display: grid; gap: 1rem; list-style: none; padding: 0; }
+    .timeline-card {
+      background: linear-gradient(160deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 1.5rem;
+    }
+    .timeline-card h3 { font-size: 1.1rem; font-weight: 700; margin-bottom: .25rem; }
+    .company { color: var(--accent); font-size: .9rem; margin-bottom: .75rem; }
+    .company a { color: var(--accent); }
+    .period {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--muted);
+      text-align: right;
+      line-height: 1.7;
+      white-space: nowrap;
+    }
+    .timeline-card ul { padding-left: 1rem; color: var(--muted2); font-size: .9rem; display: flex; flex-direction: column; gap: .35rem; }
+
+    /* ── ABOUT ── */
+    .about-grid { display: grid; grid-template-columns: 1fr 360px; gap: 2rem; align-items: start; }
+    .about-text h2 { margin-bottom: 1rem; }
+    .about-text p { color: var(--muted2); line-height: 1.8; margin-bottom: 1rem; }
+
+    .toolbox-card {
+      background: linear-gradient(160deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+    }
+    .toolbox-card h3 {
+      font-family: var(--mono);
+      font-size: .78rem;
+      color: var(--accent);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+    .toolbox-tags { display: flex; flex-wrap: wrap; gap: .4rem; }
+
+    /* ── CONTACT ── */
+    .contact-section {
+      background: linear-gradient(160deg, var(--panel-strong), var(--panel));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: clamp(2.5rem, 5vw, 4.5rem);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-section::before {
+      content: '';
+      position: absolute;
+      top: -80px; left: 50%; transform: translateX(-50%);
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, var(--accent-glow), transparent 70%);
+      pointer-events: none;
+    }
+    .contact-section h2 { margin-bottom: 1rem; }
+    .contact-section p { color: var(--muted2); margin-bottom: 2rem; }
+    .contact-links { display: flex; justify-content: center; flex-wrap: wrap; gap: .75rem; }
+
+    /* ── FOOTER ── */
+    .site-footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 0 3rem;
+    }
+    .footer-inner {
+      width: min(1140px, calc(100% - 48px));
+      margin-inline: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .footer-inner p { color: var(--muted); font-size: .88rem; }
+    .footer-nav { display: flex; flex-wrap: wrap; gap: 1rem; }
+    .footer-nav a { color: var(--muted); font-size: .88rem; transition: color .2s; }
+    .footer-nav a:hover { color: var(--accent); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 860px) {
+      .nav-toggle { display: inline-flex; }
+      .site-nav {
+        position: absolute;
+        top: calc(100% + .5rem);
+        right: 24px;
+        display: none;
+        flex-direction: column;
+        align-items: stretch;
+        width: 220px;
+        background: var(--bg2);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: .75rem;
+        box-shadow: var(--shadow);
+        z-index: 200;
+      }
+      .site-nav.open { display: flex; }
+      .hero { grid-template-columns: 1fr; min-height: auto; padding: 5rem 0 4rem; }
+      .hero-card { display: none; }
+      .project-grid { grid-template-columns: 1fr; }
+      .timeline-card { grid-template-columns: 1fr; }
+      .period { text-align: left; }
+      .about-grid { grid-template-columns: 1fr; }
+      .section-header { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="#top">jordan<span>.trpeski</span></a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+      <nav id="site-nav" class="site-nav" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#experience">Experience</a>
+        <a href="#about">About</a>
+        <a class="nav-cta" href="#contact">Get in Touch</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="section hero wrap" id="top">
+      <div class="hero-copy">
+        <div class="hero-badge">Available for remote roles</div>
+        <h1>I build systems that<br><em>work without me.</em></h1>
+        <p class="hero-sub">Automation engineer and AI integration developer based in North Macedonia. I turn manual workflows into production-grade systems — from Electron desktop apps to 10-stage AI pipelines.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-ghost" href="#contact">Get in Touch</a>
+          <a class="btn btn-ghost" href="data:application/pdf;base64,JVBERi0xLjQKJZOMi54gUmVwb3J0TGFiIEdlbmVyYXRlZCBQREYgZG9jdW1lbnQgKG9wZW5zb3VyY2UpCjEgMCBvYmoKPDwKL0YxIDIgMCBSIC9GMiAzIDAgUiAvRjMgNCAwIFIKPj4KZW5kb2JqCjIgMCBvYmoKPDwKL0Jhc2VGb250IC9IZWx2ZXRpY2EgL0VuY29kaW5nIC9XaW5BbnNpRW5jb2RpbmcgL05hbWUgL0YxIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKMyAwIG9iago8PAovQmFzZUZvbnQgL0hlbHZldGljYS1Cb2xkIC9FbmNvZGluZyAvV2luQW5zaUVuY29kaW5nIC9OYW1lIC9GMiAvU3VidHlwZSAvVHlwZTEgL1R5cGUgL0ZvbnQKPj4KZW5kb2JqCjQgMCBvYmoKPDwKL0Jhc2VGb250IC9TeW1ib2wgL05hbWUgL0YzIC9TdWJ0eXBlIC9UeXBlMSAvVHlwZSAvRm9udAo+PgplbmRvYmoKNSAwIG9iago8PAovQ29udGVudHMgMTEgMCBSIC9NZWRpYUJveCBbIDAgMCA1OTUuMjc1NiA4NDEuODg5OCBdIC9QYXJlbnQgMTAgMCBSIC9SZXNvdXJjZXMgPDwKL0ZvbnQgMSAwIFIgL1Byb2NTZXQgWyAvUERGIC9UZXh0IC9JbWFnZUIgL0ltYWdlQyAvSW1hZ2VJIF0KPj4gL1JvdGF0ZSAwIC9UcmFucyA8PAoKPj4gCiAgL1R5cGUgL1BhZ2UKPj4KZW5kb2JqCjYgMCBvYmoKPDwKL0NvbnRlbnRzIDEyIDAgUiAvTWVkaWFCb3ggWyAwIDAgNTk1LjI3NTYgODQxLjg4OTggXSAvUGFyZW50IDEwIDAgUiAvUmVzb3VyY2VzIDw8Ci9Gb250IDEgMCBSIC9Qcm9jU2V0IFsgL1BERiAvVGV4dCAvSW1hZ2VCIC9JbWFnZUMgL0ltYWdlSSBdCj4+IC9Sb3RhdGUgMCAvVHJhbnMgPDwKCj4+IAogIC9UeXBlIC9QYWdlCj4+CmVuZG9iago3IDAgb2JqCjw8Ci9Db250ZW50cyAxMyAwIFIgL01lZGlhQm94IFsgMCAwIDU5NS4yNzU2IDg0MS44ODk4IF0gL1BhcmVudCAxMCAwIFIgL1Jlc291cmNlcyA8PAovRm9udCAxIDAgUiAvUHJvY1NldCBbIC9QREYgL1RleHQgL0ltYWdlQiAvSW1hZ2VDIC9JbWFnZUkgXQo+PiAvUm90YXRlIDAgL1RyYW5zIDw8Cgo+PiAKICAvVHlwZSAvUGFnZQo+PgplbmRvYmoKOCAwIG9iago8PAovUGFnZU1vZGUgL1VzZU5vbmUgL1BhZ2VzIDEwIDAgUiAvVHlwZSAvQ2F0YWxvZwo+PgplbmRvYmoKOSAwIG9iago8PAovQXV0aG9yIChcKGFub255bW91c1wpKSAvQ3JlYXRpb25EYXRlIChEOjIwMjYwNTIyMDczNjU3KzAwJzAwJykgL0NyZWF0b3IgKFwodW5zcGVjaWZpZWRcKSkgL0tleXdvcmRzICgpIC9Nb2REYXRlIChEOjIwMjYwNTIyMDczNjU3KzAwJzAwJykgL1Byb2R1Y2VyIChSZXBvcnRMYWIgUERGIExpYnJhcnkgLSBcKG9wZW5zb3VyY2VcKSkgCiAgL1N1YmplY3QgKFwodW5zcGVjaWZpZWRcKSkgL1RpdGxlIChcKGFub255bW91c1wpKSAvVHJhcHBlZCAvRmFsc2UKPj4KZW5kb2JqCjEwIDAgb2JqCjw8Ci9Db3VudCAzIC9LaWRzIFsgNSAwIFIgNiAwIFIgNyAwIFIgXSAvVHlwZSAvUGFnZXMKPj4KZW5kb2JqCjExIDAgb2JqCjw8Ci9GaWx0ZXIgWyAvQVNDSUk4NURlY29kZSAvRmxhdGVEZWNvZGUgXSAvTGVuZ3RoIDI5NjkKPj4Kc3RyZWFtCkdhdTBEPkM1LDcmVWkhL1ImPkRVZW1gazlGa05aUltaXUBWRVAuVUttWG5nZyZzP1giIjlYYiJvW2lnO11TTmtxL3NFZWI1MEctOUAtNVwkMUdlW0VgSytZXTdtIUgrRjhHQ0osTDw6YE1TK0tyVF9cJTVTXFAncWNEc3RVNjczJEQ1c1YyYmkvR14/MHFROiJhN0h1YDMkSD86LTo7dU46LCdNPCZaUEg4J1tNSXNMJGxfX0xLTiFGKFdDK11iPCs+RE0nX2kiWSEoP2NFQD5dNWJCI2Y7WGE3cCROLypmX20sNCdsMkVNJWIjTD0+TjZbJzcocl1JKDdqayQhbmRqcG1FPllmIkk/K2QqMipSMCktcm8jPnNxP01KYGcjJTpsbExyVG5tXkRTbGdyPlsmRzIhbWhqMDpma0IvQ1k0Kl4xdD5BRidlZCFKKmEoXTRZNElpQWs2JmVqLGBAXF9PR3BhSFdSZD4sN1o9PjU1dUlTUjBaM1JlKnA6RHFdIWhKa0IwNEYiJWNiWSQ4RUQyc2wtIiY6T2slVUdkImIrMkE9JlBtPDo8SVE1LC9qLlNbVUtFLG9KSCknPjxpJE5Xbl8hRHFiTl4qLmBfWzxrN1dGRDFtLD9HYzc+TitxVyxzbU9IaGgxSDBuWGAzKEg0NkRCNiRfTHNlQEUpJWxAYz05YXVBc0g3NkhtOEAtLWRgYT5fKWRNPCsqQlY7NkUnRFZRQF5HbDFFbFopZzpFI0BcazdKRSpnZEU4Pi1CcnNaYTBcUS1JXy0pI1BbcCNcMyVycWgiZkYidD9oUyg6JWY8a15QQDMhZ1Y3M1NcW0JIR0g3SlFuYGMoMS0ndVVpRWglcmRFUT1JIklGOWdSLnFzQj5ZOFtRb1JOKFUzbCNganBjInIxVEFALkFRVmskSkJoaTpyYyc6dWQvRSg+OmYjblNySyM+UDg1OSpeSlNvJGlzPCcwOjs0SFVMXypNPGFwRCw2L2xvXD5ZN3AxMlVXaSQ0OkAzRF1NI0ZOYGxHJEZvXlVyJGlFTEApaCspY25JMFJra1hDXzFQVSNyTkVeIkJOSDRTcShxb0c7K15IViQlQ2g+UUxpcmNDVVFJXUY7V19jS2YtOVptXGldXWdkc15zSmdMaENiYChFRTNmOy1LW09KalEhK090WSNhOVJUSmM6ITc3LzwpKVduckNVbk9ma0xbQGFDXVNPXEFoI2BvQCwwPiwzbEBwWmhcKyFBQVBqNnRZImEvQHJsRVZQNE9UTihmVl9UIWM8cj5oYyV1Xz9NUi8zQHJtRzlUcGplWTVuciIjQ3VTTDtFWGg9Ik43OCZrUzc3ZXJEUCpjJ0BaVCJSUSxFIzZJPmM3MSFiKVpIcXA4SCxwI29JTGxuIihyNHNNLWItTS9QSnVAIltLb1QwZEpuPCI6L1BYb3Q2LlJDbSQ0ZithQmVAbzhZbGEuRGAzT1I5aStvTGBicjMwWGFbTU03L0JYQCZiby9cYC5CLDJkKVxcSEFgbVNgKWlpZlVHM0BfMmpAKzZfXThhQV1DNGMhaSFaQGZJXEZAdDlPcTNNdSdJN1AkbkBVI0AiIWo+YjZBU1pOIV9KRjpdZDpubW1pLjwrSSNQLyY0RDtFUCFuZzFuXDFKP0NWLkFtSWA9Kjs4M0lFW2YvXSk2U1NBL1deX3JaWzglckJyNDI/Wm9cVlxhJidQYkorPVIvJl9BT2ZoSGJOQzNEPnRpMHRbbUkhXmpnLSNYYGlPNDBfSUw8OT9KczBXTDNNWUwiZzFlVC9ITWRHM3EpMUZGTG46ZFxFTnI9JW1VaVg4JlUnWFlVWkBxPS8jY1ErKypEZj9GSG9DOF8ocV9IQyxkMkcjO1RhYVYmTjBfMDZMdGtCLlZRYzIrLWgrUC5Ma2Y4Pkw2SWYpSUdBRCglSVQsWzlSRWw1YzdJL2BkS3FEV2dudTlEUlAuSUZbdVZdcGFGXkVxamdpXVtXTHBAaTFQQFxpTlAqIk0jW2FWbDdjQlYjbyJcZDFaQjBCQSxNMWFiW0M9bDVlSU1eSkBFZywhZC1oNzhpVzk4bDEqU21hImQ6ZVxVLS0nYzA9bHNpZTNVKXFndE03QXRsYjRMKWFvNF9TN0hXZ0svWmlXX0hhWT4mMUtpVWFZM0dLYDtAYHIzXE9pYVdgW19gJSJldXJuPDJnOjpPMEInLlMkLD0pQDgrUWNKQSNtX2lCdCdiJnFPL1p0QFEqT01bOk1icXFBQD1uYF5kO1VAP0QwIUpYRG5kYGtSR0IvJik4X2c0MSheckJRLG9TNE4hN11MbTtVMFVqKT8jRXFmJTJCW3Q1Rk9GOlRSXkczTS9ZS1BVRCFlU0tsdS4/ZlQrPHNaYzI0W0M6ST5wanMxX21kUE1JLitMM0EyVlNWIUY3aixfPUw4PjpDYFglSHNqUldiVnJPR0pVPXJvPjpkUVAtayNQNEtDRXUycld1NHJPVk5fTGlrQWBmXWw8Wk9oI15ZZ05SSU4pKWRBa0FdIzAhLj1STGkjO1VZWkpALWtYLmBBO3BfcydNMW5HQlY/X0FLaXU7W2VmMmpkQVszVkw4NGNNXzdQamJHT0FjakVSVnNhLV5WMCtvYUdrPTRqXC9USytsKXJtSD9OZjBSXlNWaTNlXyZgNio4JkhdWVc5XGEyY3JnKmQ1KC47aWBwUExiaCFeNlY8ckk7KWpWUk1MLDtyV0s2JlVzWHFjNCc+LD1jTGNfQDRsS0VzOnNAO18sR2ZaaFBmY2ZQKkNdYSdbRVhIM1YmISltZzRjQXBxZldnKi9GLFMwV1leMk85TDRyZEY0NmNFJm9PL3Q3OyFTN0NjXXNUWiVoJmcvQDJAMWFmc2hnRjxbJWBnMVguWVNXKU1fb0ohUTdDNSZwcy5BQGF1bUdnZk5zLGgjTEBgNVZOS09SP0ZUOEA0aD5IPUAzKllmJ1JZcnBgNm10J1tvJCsmVk82QzVkJExjVz85TyxsNCJoW1FKVE40S3E/Q11MJ1M5NWs+RV5EM0s9LFxBWlJhVSQuW1Yrcm1bPEVdZGUoazgvalRRTjRRKkVfL0JVWi0oZz06OmxNKTFUa1xCTSNjXWcna01xPEIvcyknbV8vP3BGYk91X2ArWzU/WWhJIVIuRShxMGVmJ3U6cSosdWtKPjRKZ1pmaTEuJGdWITZsMEFIWylgWTVAMFlMRk5EWF9Ycm9HInRrOiFdMj08IkgkYWFpKixaNGRgSSlxTk9ZRkc+WD8pSUlPSVVFTVNQYWVjRVosYmY0WT5oY0VBZnFGWSJVa0g4RkNuLEpJKiRfTFJBZmFYbVBFdVdPRyw/TlgvTSYlPk8vM3NvP0tQaUw+TkNXOzxtYzw7QFtTQSdDQXI/QWBCQkFXPEwjLSRjUTg6Rid0LCJ1JUUkcFJFO3JEWjpEYVZqPHIpWi9VVi0sZCghYylkPlBAP1JcZ2owck9UREQoQXNFcV1YIWdlWXBAT19PJy1cWD1GOWRgQUcqVyFJRzhncC4xbnBDMzlaIl5POUAuTm1cWkxpMVVCZj1LQEpWU2FIMGxCZTQvM2hCaC0wRylEXW1CS11WTmEqM1NGQVJmdXJOU2w+JSInclI8NFZlZ1IoKVZXYj1NQSVNIXVMO3NcVzJiJ0wvXm03RXBoLGpLJU80XCxpa21pUlphLCM3NE8jXWVxOGtRKyhcRSpHZiNFWkFbV2Q5KWhCWFE9Jz0oU290QSEjTm4sJF5MXUNVV1oqMVl0RGVdYGVbP042SSJDY09dMjg7YzAzRzdKWWVYZDspZ1BKRjlnNFQ7PUJYYnVsNktSL1JkOFlnWCFMXzJwJiFbcD5HbHBPKkowQD0lXGEmXmtGWmhtWlQrJj1AXmZHVmtrQjgpSTc9MDVfUidsdGMvZmVOY2c7SS8sb1lcM3A7M0w3YGItckNNIiMwW3RcZVZwYDNXIWx1Sj1FPH4+ZW5kc3RyZWFtCmVuZG9iagoxMiAwIG9iago8PAovRmlsdGVyIFsgL0FTQ0lJODVEZWNvZGUgL0ZsYXRlRGVjb2RlIF0gL0xlbmd0aCAzMDQxCj4+CnN0cmVhbQpHYiIvKD5DNSlEKDRHcVxmSXVYVCxYQl1jNy9COlg4UC85OSh0Kmcha0VlSVFjaWNxOGtbS25YcVFqY1oiPyVTczoyIiJbWW5KPzpVUj9PNUhnZUA0IydLSE9rZUNGbG9dciNSXittXF9CdGJrMW1hc0EyVF5oc0hsXjpWcEZHdTdBZlRudC9CbG1VKGk4UWEqRzhzOVNkKTQxT0ZiVmM1SENHdSMsSkFlOG1cJixxSiY8KDVHIm1tNDlYQDVqP0VXXjRcaURdX1BMPXQqUkdDIUNAJzxBWDRIX15TN2U4OGlKJCgnb0x1MV51bE9XamhkTVo+I2NuaFYxUj4wMDA6cmkhbElHNmNEYzcsU0daMCtsbk9jNiJZKEFXXEtvMGshSFkvS1xVVlx0SVxfO2kxWjBXb1tOO2RGR0tvNFYoSDJbUSslV0NYJmQ9Y1I5KD9COXNwUVAkcG5SOTdFOyJFXl9uIVIyWzdxWGo6S140NkZlb1g/JDFwOU0mXTJiKFFDU083RD87c2s8b0FKJ1tYZVEwPmBYTE9LRCMhXkFkJF5QNG05Tk5iXCk5W19tPjlvK2hQPT1iRitPcihUMmw1MTAoQWplXT02Ky9RPiRMKzY3P2lIZkpqNjdNMEZyNWY6aT1kTGArLVFRYjtNT0YlSUBONmhkWzJvKXMwdTY2Q0Jzb1YqL11iPGo3Wz0mKWlhUVBkbT40WnFUR2ViWSkrLCJpJC5URjIjTEsqaiEjVE45ODtjbFVYU3M0ZT81aDdNRD0oYzklUixAOicpOyM2NDRUVSU8OC5gPDpzP0JdcXIxVlVtQCwoNllMWHJKViJuQD0nVU46ODw9cyNgZGJMbi4sWkIjUUBmXXEzIWxeLj5bI1BvW1ouTilNbVIqPShsc2gkNGU+NUJiTWdFanNpdFdVc0tTJnE/PClxbkxYX2JkZ1xfc0FoKz0wNnE/UDZQaygmYUNKNkBjbWNmaFJmLTFEaSwpcVpnWWl0YVQlLyRbNS9eQDpLS05vWkQhX1YtPGtuVUs1NyRMPW1uJls3byRPTSdxKmxPM2UnT0hXMypVIWdtV0pYZ044X0dIYUpsSFhaIXUyMThIW11lKmtrRjJLLUI8SkNaNl0zaTYsVnI/bVIvLEMwUyssKUFqIiQ4bUBDNiNubDxoRlIsdFpFV0thbVQ7LjxpXVpdKFYmYlFaRTNIK0w6MCdSXGtHMVxMKlBhKU9xY1UjK2ZDTipcWTU8USRBZzlnajlZN0A0VlRgQydUPm9oQiJUPyhhcDRmPF9MZ19bRG8+P2JJRD5rLUc5XykrTE4uRGY5XztdIzE9ZiZCKnNGRHJfX1RGXSVjbUlEYj8+JVVIaDRNdEl1I2ZgU1NAb0g3dDo2Q0pxTF5pQjZ1KXVOT09ydUc2Rl4tUCZiOSlZdFpBRWJYLVM8K2VmQmMzTk1NYzhcSjwyOV9vYDlFY2csNXQtNVJyN2ReN2dec0ktPWtmQFdyIXFpSScvJSFuJkhTQXJqWj9vLk1ILS1lO2klRlNSRkQ3O1ZoYUVoLEpZUyY2VChNbEMxIkswZVg6XlxOT1Q7Im05PlhRZzxLK0UnIVJsbU1AJEIpc0QzRUhob3RILS1IIzoncXFDIjknO2dEPnRFbVxwLkZkWWE2NU9DbFdSKWNHMjk6bz5JKmopW2BOUDI8QVw3LjQ8Plw+JlRmSi4mO2k5KU9nQjsjTz9GLWNBRVhMdGloWFkmaUs3QGxfUStwUXIyUmk9IUw7MW89OXAxbURpcidRW0BGZ3VOTl8lcj5ISyNCKDxBPU5YJGc1IlZMZUciOlNnWWtNQVxbaFVlMEsrTDMjRE5EUiJSc2RRTHVMQUw0SGo9U0VLKGwxRkMuPXEwZ0NuUSQhWFgkWlIxMj41RUosMzcmOVdATWZEY0VgQyEkW0NvbWNZayYoRWJgaUBSXWlyLmFHQiJRJ2EmYkplJl9iY0FlP1YoLUdsWWZbPmlaUGdaVTMoSDxDb1FDWiE9JzVEWWwhIjxOKWs5TWcxNCZwOTMzK3JCbVpodXVXLGFFVC43M2F1WFIsI3FZbVBVZi0rXloyO2YyXzxiRl9UUFFLO1sjXzdlTXNaQmg2YylHLSczcS07b2BCaCw8MT4pKS48VGQqZW4uQ0ErKSstaEZiPUZFTScvTTlHcUR1PUVDaHQzQTl1ZFtScF5hJ1pvUilAMT5WbzlKc2xeTWlvNFExQGFdUENzYVA1byp1XD8+J0k+VUpYI0tDP0ArXFlSaCkhLjZlY1dWPERwNk1tQGVRMi1GLERdTj9qR2RRRXRNOT5xPTtmNEw9bzxRVyk4P1pOI0Roamc0Z087MmVaNmRvRi1AVW4sUmc5aEo/VUVMKG5PaSQtJ3IwTlwsMychUGgiL1xvYGJdIiE8T0FtNWxkby9jck04aCktPVkuOVZHL0E1J2JaR21mLzAnaVVaP0U9NElsSD5CSD9KPl9UTyMlNV0vbG1OUV8oOGpNZmZZKVNqdWhgSHI0UWZBZyNlTCVcOSpJI1w6cVhkPEdwPkBaYGsySkVMc05jI3BBSzhrSEVyNWYtYkora2ZwRjxUWExyXjNVYihtKHJGJ1RgRjRuLzsiZlE/cHFTRFs7Y24iaGEucVg9SkhZYCk2XkVhWlNiIUUkPCZtWz44I0JIUC1zM2JlRlhqJiE6SyNfVm0+Zm03LjhOOm0uOy5CIidXbS5FJnVOKz0laFZkUy5ROms1ZCVLKSQoNHNyWFltSGM/QU9hRSskSXQyVnM0KC9lNCtYPGZgJWo9XEZfJWEhWSE+Sy9fUC5TYnIuXXNOcygqXl9nK2NYU0hZQHA4XC07QGdoU2AtQ0ZaTVJVNj5SK2ZiS1xSclZAWkMpb01SOkVYPXUuSUJSPypscyc3KnFpMTtGW1BfVHRxYjNsX2FsW0w1RSkuMSxgOk9gNXNpX1JMWSRISWQoRkYhXV1wWmdPJFlQMjE5QjhxXFFvJj9kbUlrKTlrb147NzhEZVJpZEA5KjRwYGsjPisncSFgS09USFpJZWhybGgjdHBFb1lvKyg9RDohcyskJEVmajhYNE0rPHRvVGhAWCopMGlYOz9tTilWLSYkdD8nSj44Nydva0gwKTU5dDQvTkcnMyMpVzcnR102RHIrXzhGc1cwKWcxY1k5MSNLW0oyTTMoRjleTEcudTNNT19UQjI6RWxGImY5WE02UUdiTXQjZyc8NVVkV0hLVWo0MFEzZWJRUW5AIkxrM1FfVzBFakpuPD1pKT5DJzJYPDMpS1w4ajNEdF0yNDdAN0FdVCgmTEYmYkdQVltoIlxNbjpHOUAtUG1SLjoqTCtiWVpeR28mIkgkKVkxcT4/YTdNOzFaXyRbWm0mKCFsOis5aDY6Xz5vOyJZVVMzaipUPzk8X3FQOislRTBzXHVyVjYiZ2FtQTVfcHA1OyhpTVo1YkZaSUkuaWFSV3QyXSgkbkNRUiotNUw0X1tdcitKbytycChtXDNvbG9BZnRiSSdGN2UkWjA3KWNYSDJvPFlUK15cIV89RCxgUjk0RXRSbnM2ZUArckZkQXNmJlpNJlFPUyZTPiU3QUNLdTRiXzVOZihcVSNKdUNuVyxgTT9cPGBtJCRCRHMjcTVUQlw3RDN0P0I4YD8/LyMkRkRgTWhxXHVtOVc0SGVCO1JIXWY+ZGVOTHMrYlcnJDdASig7SjZEYi9kXmo8WmlJOzhNJUdsJURLLUhDOFRxQFNUTnUsc2YhcHNFa0VASjF1T1ZXWTtBZDxWVWNMLytNaVNkQDclNiYrUiorc20pVyIjbmlpaU0lcDomJUpSUkFSdWxyaHNkSi5XaEIrWClPcHVIU1YrIm0yYUprbzQ0QkUtVi5wY0shdDFER2NVX1QrRUpVQWZFWCpccU5WbVciPCw0W14+RV5QW3I0KEZbJ2s9IkVQT1YkKy4+UGZkN01OI05adVI0ZkFsbDk6aCdMPThiRXREXlAmOChtJEAmNSw3alliaDlzZjczYyZkJ15RYDpSNnVWOk1CIVhQO0gkVDZXRChkVjRCRSYhKFExZUF+PmVuZHN0cmVhbQplbmRvYmoKMTMgMCBvYmoKPDwKL0ZpbHRlciBbIC9BU0NJSTg1RGVjb2RlIC9GbGF0ZURlY29kZSBdIC9MZW5ndGggNTc5Cj4+CnN0cmVhbQpHYXUxKT8jUTJkKGtxR1MoJEA/QS00XyUoanReZiZCTig3SDVqaWdVJkxbKVEtM11SNHMqailUI2RIa2Exc0pRLmZ1SDsmYkJrWEJxcD4mLWsuanVLY2FPVVEra19KRGAoK2onN0gtRWtacl85PzRSUlA7IjpMJjZcP1AuZGEjPS9ZK0tjZmxNaDNXbEtBYkUrUFlpSmkrSC9kQC5tVWJnL3FiV3NOaHJIUFcoImlcLFFpME5hOUhYbVw2MzFiUDp1WzIlbk0tbnE6SXFzP0ViLkZpSWBeLioldEBiZUgtJC5IQGtvcyNqLWJtZS1kLzdlJ111PCpCQUw/YlFBNzssIiRiKis7YyUvMm09T0ZGSXEoJmNaTVtPWkVAYEw9JzhDcGZdJ0tgJiclaz1MZjpFTFdwbFM0Q01tXjBiaiplZE88OUhXQVpaPUJCZjkobXFQPlRpK11kajRlRmksaElaRkBGWiNkKWRSKkpZKFRPWGwyLFBKT20tV08zWUs4WlFhMjxLW2dXZiU4cm50YFJvSkdYYm8ya1I8KGInSytlMTAnZ1xCXERkRHEzdFEqQTFgO1A5KVZJPVNmbDVsaVQxM3JMbj1rTlJfWlEyQzpUb2goXCdTcz5YPzZDcC0wZlZMdG4tL1QvI1luTFRoQkE3cnBHUDQzV0c+UidzL3BhbUdMYW0xP1RFWj0sZ0RvUiRPYlpcQChEXSVYb0VpaDdwM1dpQmwnQVZSKG9nP2BkX01uNG9AWyZuOnIiN1chIjIjfj5lbmRzdHJlYW0KZW5kb2JqCnhyZWYKMCAxNAowMDAwMDAwMDAwIDY1NTM1IGYgCjAwMDAwMDAwNjEgMDAwMDAgbiAKMDAwMDAwMDExMiAwMDAwMCBuIAowMDAwMDAwMjE5IDAwMDAwIG4gCjAwMDAwMDAzMzEgMDAwMDAgbiAKMDAwMDAwMDQwOCAwMDAwMCBuIAowMDAwMDAwNjEzIDAwMDAwIG4gCjAwMDAwMDA4MTggMDAwMDAgbiAKMDAwMDAwMTAyMyAwMDAwMCBuIAowMDAwMDAxMDkyIDAwMDAwIG4gCjAwMDAwMDEzNzIgMDAwMDAgbiAKMDAwMDAwMTQ0NCAwMDAwMCBuIAowMDAwMDA0NTA1IDAwMDAwIG4gCjAwMDAwMDc2MzggMDAwMDAgbiAKdHJhaWxlcgo8PAovSUQgCls8MWQ4YmEyZDg4MDc5NmYyY2Y1N2U2OTM5MDU3NzcxMmI+PDFkOGJhMmQ4ODA3OTZmMmNmNTdlNjkzOTA1Nzc3MTJiPl0KJSBSZXBvcnRMYWIgZ2VuZXJhdGVkIFBERiBkb2N1bWVudCAtLSBkaWdlc3QgKG9wZW5zb3VyY2UpCgovSW5mbyA5IDAgUgovUm9vdCA4IDAgUgovU2l6ZSAxNAo+PgpzdGFydHhyZWYKODMwOAolJUVPRgo=" download="Jordan_Trpeski_CV.pdf">Download CV</a>
+        </div>
+      </div>
+
+      <aside class="hero-card" aria-label="Profile summary">
+        <p class="hero-card-label">// profile</p>
+        <p>Automation and AI engineer building production tooling at Bechtel-Enka Joint Venture — started as a Document Control Clerk, ended up building software that serves multiple departments. I build things that run without babysitting.</p>
+        <div class="stat-grid">
+          <div class="stat">
+            <div class="stat-val">6<span>+</span></div>
+            <div class="stat-label">Production projects</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">10<span>+</span></div>
+            <div class="stat-label">APIs integrated</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">2<span>y</span></div>
+            <div class="stat-label">Building systems</div>
+          </div>
+          <div class="stat">
+            <div class="stat-val">∞</div>
+            <div class="stat-label">Manual steps removed</div>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="section" id="projects">
+      <div class="wrap">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">// projects</p>
+            <h2>Things I've Built</h2>
+            <p class="section-desc">Production tools, AI pipelines, and automation systems — all shipped and running.</p>
+          </div>
+          <a class="inline-link" href="https://github.com/JordanTrpeski" target="_blank" rel="noopener noreferrer">GitHub →</a>
+        </div>
+        <div class="project-grid" id="project-grid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="experience">
+      <div class="wrap">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">// experience</p>
+            <h2>Work Experience</h2>
+            <p class="section-desc">From document clerk to automation engineer — the story of noticing things that could be better and fixing them.</p>
+          </div>
+        </div>
+        <ol class="timeline" id="timeline"></ol>
+      </div>
+    </section>
+
+    <section class="section" id="about">
+      <div class="wrap">
+        <div class="about-grid">
+          <div class="about-text">
+            <p class="eyebrow">// about</p>
+            <h2>About Jordan</h2>
+            <p>I'm an automation and AI engineer from Gostivar, North Macedonia. My path into development was unconventional — I joined Bechtel-Enka as a Document Control Clerk, got frustrated with how many things were done manually, and started fixing them. That pattern eventually turned into a full development project serving multiple departments.</p>
+            <p>Outside of work I build my own tools — VideoForge is an automated video production pipeline that takes a topic and outputs a fully edited, captioned, published short-form video with zero manual steps. Trend-Analysis is a content intelligence dashboard that uses Claude with live web search to surface opportunities before they saturate.</p>
+            <p>I have a Bachelor's in Computer Science from University of Saint Apostol Pavel, specialising in Network and Database Security. I work primarily with Python, JavaScript, Node.js, and the Claude API — and I'm most comfortable when the system I'm building can run unsupervised.</p>
+          </div>
+          <aside class="toolbox-card">
+            <h3>// toolbox</h3>
+            <div class="toolbox-tags" id="toolbox"></div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="contact">
+      <div class="wrap">
+        <div class="contact-section">
+          <p class="eyebrow">// contact</p>
+          <h2>Let's build something.</h2>
+          <p>Open to remote automation, AI integration, and internal tooling roles. Email works best.</p>
+          <div class="contact-links">
+            <a class="btn btn-primary" href="mailto:jordan@trpeski.mk">jordan@trpeski.mk</a>
+            <a class="btn btn-ghost" href="https://github.com/JordanTrpeski" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a class="btn btn-ghost" href="https://linkedin.com/in/jordantrpeski" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <p>© 2026 Jordan Trpeski. Built and shipped.</p>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <a href="https://github.com/JordanTrpeski" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://linkedin.com/in/jordantrpeski" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="mailto:jordan@trpeski.mk">Email</a>
+      </nav>
+    </div>
+  </footer>
+
+  <script>
+    const projects = [
+      {
+        name: 'edms-downloader',
+        language: 'JavaScript',
+        tag: 'Production · NDA',
+        subtitle: 'Packaged desktop app for EDMS document automation.',
+        description: 'Electron app with embedded Express API, Puppeteer browser automation, intelligent print queue management, and OCR pipelines — built for Bechtel-Enka, serving multiple departments.',
+        bullets: [
+          'Multi-session Chrome management (up to 10 parallel)',
+          'Priority-based print queue with PowerShell monitoring',
+          'Mistral OCR API integration with exponential backoff'
+        ],
+        url: 'https://github.com/JordanTrpeski/edms-downloader',
+        private: true
+      },
+      {
+        name: 'VideoForge',
+        language: 'Python',
+        tag: 'Personal',
+        subtitle: '10-stage AI video production pipeline.',
+        description: 'Input a topic. Get a fully edited, captioned, SEO-tagged short-form video posted to YouTube and TikTok — automatically. Orchestrates Claude, ElevenLabs, Leonardo.AI, MoviePy, and Whisper.',
+        bullets: [
+          'Claude API → ElevenLabs → Leonardo.AI → MoviePy → Whisper',
+          'Flask dashboard with manual review gate before upload',
+          'Google Trends spike detection and fast-track pipeline'
+        ],
+        url: 'https://github.com/JordanTrpeski/VideoForge'
+      },
+      {
+        name: 'Trend-Analysis',
+        language: 'Python',
+        tag: 'Personal',
+        subtitle: 'AI-powered content intelligence dashboard.',
+        description: 'Uses Claude with live web search to discover breaking cases across news, YouTube, and Reddit — scoring each through a custom 6-dimension weighted algorithm.',
+        bullets: [
+          'Custom scoring engine: recency, source diversity, YouTube gap',
+          'Claude API over traditional scraper — tradeoffs documented',
+          'APScheduler automation with watchlist and scan history'
+        ],
+        url: 'https://github.com/JordanTrpeski/Trend-Analysis'
+      },
+      {
+        name: 'Auto-Upload-Tools',
+        language: 'JavaScript',
+        tag: 'Production · NDA',
+        subtitle: 'Document automation suite — 8 workflow handlers.',
+        description: 'Production automation suite for EDMS document workflows. Puppeteer browser automation, Mistral OCR, ExcelJS, resumable batch processing, and multi-session support.',
+        bullets: [
+          '8 document category handlers from a single interactive menu',
+          'Resumable batch jobs — resume from last confirmed position',
+          'Colour-coded status output back to Excel trackers'
+        ],
+        url: 'https://github.com/JordanTrpeski/Auto-Upload-Tools',
+        private: true
+      },
+      {
+        name: 'Viral',
+        language: 'TypeScript',
+        tag: 'Personal',
+        subtitle: 'Offline-first personal mobile super-app.',
+        description: 'React Native + Expo personal super-app with health tracking, budget, and organiser modules. SQLite + MMKV storage, Zustand state, NativeWind design system, GitHub Actions CI/CD.',
+        bullets: [
+          'Strict module isolation — modules never import from each other',
+          'Full dark-mode token system with NativeWind',
+          'EAS build pipeline and GitHub Actions CI/CD'
+        ],
+        url: 'https://github.com/JordanTrpeski/Viral'
+      },
+      {
+        name: 'cybersecurity-games',
+        language: 'TypeScript',
+        tag: 'University',
+        subtitle: 'Security awareness web tools.',
+        description: 'Interactive web application with five security tools: URL phishing detector, cybersecurity quiz, password strength analyser, email legitimacy checker, and spoofed website detector.',
+        bullets: [
+          'Built to complement CS degree in Network & Database Security',
+          'React + TypeScript + TailwindCSS',
+          'Five interactive security awareness modules'
+        ],
+        url: 'https://github.com/JordanTrpeski/cybersecurity-games'
+      }
+    ];
+
+    const experience = [
+      {
+        role: 'Document Control Clerk → Automation Developer',
+        company: 'Bechtel-Enka Joint Venture',
+        companyUrl: null,
+        period: 'Oct 2025 – Present',
+        place: 'Gostivar, North Macedonia · On-site',
+        note: 'Specific document types and project details are confidential under NDA.',
+        bullets: [
+          'Hired as Document Control Clerk. After independently fixing a software inefficiency and automating personal workflows, was assigned a development project serving multiple departments.',
+          'Built edms-downloader: a fully packaged Electron desktop application with embedded Express API, Puppeteer automation, OCR pipelines, and intelligent print queue management.',
+          'Built Auto-Upload-Tools: a production automation suite covering multiple document workflow categories with multi-session Chrome management and resumable batch processing.',
+          'Developed Python REST API integrations for EDMS document management, role synchronisation scripts using openpyxl and pandas, and OCR pipeline evaluation (Mistral vs Google Cloud Vision).'
+        ]
+      },
+      {
+        role: 'Frontend Web Developer',
+        company: 'Freelance',
+        companyUrl: null,
+        period: 'Feb 2023 – Oct 2024',
+        place: 'Remote',
+        note: null,
+        bullets: [
+          'Designed and delivered a full community website for a US-based organisation — custom UI design, Stripe donation integration, and end-to-end delivery.',
+          'Built an e-commerce admin dashboard covering product inventory, order tracking, and customer management (React, Next.js, TypeScript).',
+          'Developed the real-time messaging layer for a collaborative application using WebSockets for peer-to-peer synchronisation.',
+          'Delivered GraphQL API with Apollo Server and PostgreSQL database management across multiple client projects.'
+        ]
+      }
+    ];
+
+    const toolbox = [
+      'JavaScript', 'TypeScript', 'Python', 'Node.js', 'React',
+      'React Native', 'Express.js', 'Flask', 'Electron', 'Puppeteer',
+      'Claude API', 'Mistral OCR', 'ElevenLabs', 'Make.com',
+      'Power Automate', 'REST APIs', 'Webhooks', 'SQLite',
+      'PostgreSQL', 'openpyxl', 'Git', 'Expo / EAS'
+    ];
+
+    // Render projects
+    document.querySelector('#project-grid').innerHTML = projects.map(p => `
+      <article class="project-card">
+        <div class="project-meta">
+          <span class="tag tag-accent">${p.language}</span>
+          <span class="tag">${p.tag}</span>
+        </div>
+        <h3>${p.name}</h3>
+        <strong>${p.subtitle}</strong>
+        <p>${p.description}</p>
+        <ul>${p.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+        <div class="card-footer">
+          ${p.private
+            ? `<span class="tag" style="font-size:.78rem;">Private · NDA</span>`
+            : `<a class="inline-link" href="${p.url}" target="_blank" rel="noopener noreferrer">GitHub →</a>`
+          }
+        </div>
+      </article>
+    `).join('');
+
+    // Render timeline
+    document.querySelector('#timeline').innerHTML = experience.map(e => `
+      <li class="timeline-card">
+        <div>
+          <h3>${e.role}</h3>
+          <p class="company">${e.companyUrl ? `<a href="${e.companyUrl}">${e.company}</a>` : e.company}</p>
+          ${e.note ? `<p style="font-size:.82rem;color:var(--muted);font-style:italic;margin-bottom:.75rem;">${e.note}</p>` : ''}
+          <ul>${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+        </div>
+        <p class="period">${e.period}<br>${e.place}</p>
+      </li>
+    `).join('');
+
+    // Render toolbox
+    document.querySelector('#toolbox').innerHTML = toolbox.map(t => `<span class="tag">${t}</span>`).join('');
+
+    // Nav toggle
+    const nav = document.querySelector('#site-nav');
+    const toggle = document.querySelector('.nav-toggle');
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+    nav.addEventListener('click', e => {
+      if (e.target.tagName === 'A') {
+        nav.classList.remove('open');
+        toggle.setAttribute('aria-expanded', 'false');
+      }
+    });
+  </script>
+</body>
+</html>
